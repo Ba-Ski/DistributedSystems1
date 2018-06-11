@@ -8,14 +8,14 @@ namespace DistributedSystems_1
     {
         private static void Main(string[] args)
         {
-            var (bank, shop, man) = RunCalculationService();
+            var (bank, shop, man) = CreateActors();
             
             bank.Tell(new SettingsMessage(new [] {shop, man}));
             shop.Tell(new SettingsMessage(new [] {bank, man}));
             man.Tell(new SettingsMessage(new [] {bank, shop}));
         }
 
-        private static (IActorRef, IActorRef, IActorRef) RunCalculationService()
+        private static (IActorRef, IActorRef, IActorRef) CreateActors()
         {
             var system = ActorSystem.Create("DistributedService");
             var logger = new SerilogFileLogger();

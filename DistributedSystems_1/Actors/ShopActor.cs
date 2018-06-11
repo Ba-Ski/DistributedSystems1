@@ -15,7 +15,8 @@ namespace DistributedSystems_1.Actors
 
     public class ShopActor : UntypedActor
     {
-        private const int PurchaseDuration = 2;
+        // TODO: add action FinishPurchase which happens after bank response
+        private const int GetCredit = 2;
 
         private readonly ICanTell _logger;
         private readonly Dictionary<long, InputQueue<int>> _inputQueues;
@@ -27,7 +28,7 @@ namespace DistributedSystems_1.Actors
         private State _state;
 
         //Минимальное время, с которым могут запланировать следующее событие
-        private int MinNextSheduleTime => _currentTime + PurchaseDuration;
+        private int MinNextSheduleTime => _currentTime + GetCredit;
 
         public ShopActor(decimal amountOfMoney)
         {
@@ -102,6 +103,7 @@ namespace DistributedSystems_1.Actors
 
             switch (msg)
             {
+                //TODO: add BuyStuff message
                 case TransactionResponse<int> responseMsg:
                     ProcessTransactionResponse(responseMsg, sender);
                     break;

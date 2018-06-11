@@ -34,6 +34,7 @@ namespace DistributedSystems_1.Actors
             _logger = Context.ActorSelection(LoggingActor.Path);
         }
 
+        //TODO: inicialize _innerTasks with scenario
         private void Start(IEnumerable<IActorRef> actors)
         {
             foreach (var actor in actors)
@@ -44,6 +45,9 @@ namespace DistributedSystems_1.Actors
             SendNullMsgBroadcast(_currentTime);
         }
 
+        //TODO: use become to change scenario of OnReceive method.
+        // In the begining OnReceive will wait SettingsMessage,
+        // after it will catch common messages.
         protected override void OnReceive(object message)
         {
             if (message is SettingsMessage settings)
@@ -134,6 +138,12 @@ namespace DistributedSystems_1.Actors
         }
 
         #region Actions
+
+        //TODO: make request
+        private void MakeDepositRequest(int amountOfMoney, IActorRef recepient)
+        {
+            throw new NotImplementedException();
+        }
 
         private void MakeWithdrawRequest(int amountOfMoney, IActorRef recepient)
         {

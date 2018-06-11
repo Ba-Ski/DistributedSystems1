@@ -27,6 +27,7 @@ namespace DistributedSystems_1.Actors
         }
     }
 
+    //TODO: add scenatio to message.
     public class SettingsMessage
     {
         public SettingsMessage(IEnumerable<IActorRef> actors)
